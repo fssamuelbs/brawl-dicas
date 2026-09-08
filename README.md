@@ -1,4 +1,4 @@
-# brawl-dicas
+# brawl-hub-pro
 🎮 Brawl Dicas
 
 O Brawl Dicas é um site desenvolvido com o objetivo de ajudar jogadores de Brawl Stars, principalmente iniciantes, a aprender mais sobre o jogo e melhorar seu desempenho.
