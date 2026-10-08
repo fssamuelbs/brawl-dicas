@@ -1,206 +1,226 @@
-* {
-    box-sizing: border-box;
+/* ---------- Variáveis ---------- */
+:root {
+  --amarelo: #f3ff69;
+  --amarelo-hover: #dfffd0;
+  --preto: #000;
+  --fundo-pagina: #262626;
+  --fundo-rodape: #2b2929;
+  --texto: #222;
+  --branco: #fff;
+
+  --fonte-titulo: Impact, "Arial Narrow Bold", "Haettenschweiler", sans-serif;
+  --fonte-texto: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  --largura: 1100px;
+  --espaco-x: clamp(1.5rem, 5vw, 3.5rem);
+  --raio: 12px;
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    background-color: #262626;
-    color: #222222;
-    font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background-color: var(--fundo-pagina);
+  color: var(--texto);
+  font-family: var(--fonte-texto);
+  line-height: 1.6;
 }
 
 header,
-section,
+main,
 footer {
-    width: 1100px;
-    max-width: 100%;
-    margin: auto;
+  width: min(100%, var(--largura));
+  margin-inline: auto;
 }
 
-header {
-    position: relative;
-    min-height: 480px;
-    padding: 90px 55px 160px;
-    overflow: hidden;
-    background-color: #000000;
-    color: white;
-}
-
-header::after {
-    content: "";
-    position: absolute;
-    left: -5%;
-    bottom: -80px;
-    width: 110%;
-    height: 180px;
-    background-color: #f3ff69;
-    border-radius: 50% 50% 0 0;
-}
-
-header h1,
-header p,
-.logo {
-    position: relative;
-    z-index: 1;
-}
-
-h1 {
-    max-width: 420px;
-    margin: 0 0 50px;
-    font-family: Impact, fantasy;
-    font-size: 86px;
-    font-weight: normal;
-    line-height: 0.9;
-}
-
-header p {
-    max-width: 430px;
-    font-weight: bold;
-}
-
-.logo {
-    position: absolute;
-    top: 120px;
-    right: 90px;
-    width: 230px;
-    height: 230px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #355000;
-    color: #dfff3f;
-    border-radius: 50%;
-    overflow: hidden;
-}
-
-.logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-section {
-    padding: 35px 55px;
-    background-color: #f3ff69;
-}
-
+h1,
 h2 {
-    margin: 0 0 20px;
-    font-family: Impact, fantasy;
-    font-size: 38px;
-    font-weight: normal;
+  font-family: var(--fonte-titulo);
+  font-weight: normal;
+  line-height: 1;
+  letter-spacing: 0.01em;
 }
 
-ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 18px;
-    padding: 0;
-    margin: 25px 0 0;
-    list-style: none;
+p {
+  max-width: 65ch;
+  margin: 0;
 }
 
-a {
-    display: block;
-    min-width: 155px;
-    padding: 12px 28px;
-    background-color: white;
-    color: #222222;
-    border-radius: 12px;
-    font-family: Impact, fantasy;
-    text-align: center;
-    text-decoration: none;
+a:focus-visible {
+  outline: 3px solid var(--preto);
+  outline-offset: 3px;
 }
 
-section:first-of-type a {
-    width: 145px;
-    min-width: 145px;
-    min-height: 150px;
-    padding: 0 0 12px;
-    overflow: hidden;
-    background-color: white;
+/* ---------- Topo ---------- */
+.topo {
+  position: relative;
+  overflow: hidden;
+  min-height: 480px;
+  padding: 90px var(--espaco-x) 160px;
+  background-color: var(--preto);
+  color: var(--branco);
 }
 
-section:first-of-type img {
-    width: 100%;
-    height: 105px;
-    display: block;
-    object-fit: cover;
-    margin-bottom: 12px;
+/* Curva amarela que "entra" na primeira seção */
+.topo::after {
+  content: "";
+  position: absolute;
+  left: -5%;
+  bottom: -80px;
+  width: 110%;
+  height: 180px;
+  background-color: var(--amarelo);
+  border-radius: 50% 50% 0 0;
 }
 
-section:nth-of-type(2) ul {
-    max-width: 540px;
+.topo h1,
+.topo p {
+  position: relative;
+  z-index: 1;
 }
 
-.campeonato {
-    display: flex;
-    align-items: flex-start;
-    gap: 35px;
+.topo h1 {
+  max-width: 7ch;
+  margin: 0 0 clamp(1.5rem, 4vw, 3rem);
+  font-size: clamp(3.5rem, 11vw, 5.4rem);
+  line-height: 0.9;
 }
 
-.campeonato nav {
-    width: 540px;
+.topo p {
+  max-width: 430px;
+  font-weight: bold;
 }
 
-.tokyo {
-    width: 390px;
-    max-width: 100%;
+/* ---------- Seções ---------- */
+section {
+  padding: 2.25rem var(--espaco-x);
+  background-color: var(--amarelo);
 }
 
-a:hover {
-    background-color: #dfffd0;
+section + section {
+  border-top: 2px solid rgb(0 0 0 / 0.12);
 }
 
-footer {
-    padding: 35px 55px 100px;
-    background-color: #2b2929;
-    color: white;
+section h2 {
+  margin: 0 0 1.25rem;
+  font-size: clamp(1.9rem, 4vw, 2.4rem);
 }
 
-footer p {
-    margin: 0;
-    font-weight: bold;
-    text-align: center;
+/* ---------- Botões de link ---------- */
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+  max-width: 540px;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
 }
 
+.links a {
+  display: block;
+  min-width: 155px;
+  padding: 0.75rem 1.75rem;
+  background-color: var(--branco);
+  color: var(--texto);
+  border-radius: var(--raio);
+  font-family: var(--fonte-titulo);
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+
+.links a:hover {
+  background-color: var(--amarelo-hover);
+}
+
+/* ---------- Rodapé ---------- */
+.rodape {
+  display: grid;
+  gap: 2rem;
+  padding: 2.25rem var(--espaco-x) 4rem;
+  background-color: var(--fundo-rodape);
+  color: var(--branco);
+}
+
+.rodape h2 {
+  margin: 0 0 1rem;
+  font-size: 1.5rem;
+}
+
+.rodape ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rodape a {
+  color: var(--branco);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: transparent;
+  transition: text-decoration-color 0.15s ease;
+}
+
+.rodape a:hover,
+.rodape a:focus-visible {
+  text-decoration-color: var(--amarelo);
+}
+
+.rodape a:focus-visible {
+  outline-color: var(--amarelo);
+}
+
+.rodape-logo {
+  width: 120px;
+  height: auto;
+}
+
+.direitos {
+  max-width: none;
+  margin: 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgb(255 255 255 / 0.15);
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* ---------- Mobile ---------- */
 @media (max-width: 600px) {
-    header,
-    section,
-    footer {
-        padding-left: 25px;
-        padding-right: 25px;
-    }
+  .topo {
+    min-height: 400px;
+    padding-top: 60px;
+  }
 
-    h1 {
-        font-size: 55px;
-    }
+  .links {
+    max-width: none;
+  }
 
-    header {
-        background-image: none;
-    }
+  .links li {
+    width: 100%;
+  }
 
-    .logo {
-        display: none;
-    }
+  .links a {
+    width: 100%;
+  }
 
-    h2 {
-        font-size: 30px;
-    }
+  .rodape ul {
+    flex-direction: column;
+  }
+}
 
-    a {
-        width: 100%;
-    }
-
-    .campeonato {
-        display: block;
-    }
-
-    .campeonato nav {
-        width: auto;
-    }
-
-    .tokyo {
-        margin-top: 25px;
-    }
+/* ---------- Acessibilidade ---------- */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
 }
