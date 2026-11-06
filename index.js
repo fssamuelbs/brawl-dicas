@@ -86,3 +86,45 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.style.display = "none";
   });
 });
+
+// ---------- Funcionalidade do FAQ (Acordeão e Pesquisa) ----------
+document.addEventListener("DOMContentLoaded", () => {
+  const faqItens = document.querySelectorAll(".faq-item");
+
+  faqItens.forEach(item => {
+    const botao = item.querySelector(".faq-pergunta");
+    
+    botao.addEventListener("click", () => {
+      // Fecha os outros abertos (opcional, se quiseres apenas um por vez)
+      faqItens.forEach(outroItem => {
+        if (outroItem !== item) {
+          outroItem.classList.remove("ativo");
+          outroItem.querySelector(".faq-pergunta").setAttribute("aria-expanded", "false");
+        }
+      });
+
+      // Alterna o atual
+      const estaAtivo = item.classList.toggle("ativo");
+      botao.setAttribute("aria-expanded", estaAtivo);
+    });
+  });
+
+  // Barra de Pesquisa Dinâmica do FAQ
+  const inputBusca = document.getElementById("inputBuscaFaq");
+  if (inputBusca) {
+    inputBusca.addEventListener("input", (e) => {
+      const termo = e.target.value.toLowerCase().trim();
+      
+      faqItens.forEach(item => {
+        const textoPergunta = item.querySelector(".faq-pergunta").innerText.toLowerCase();
+        const textoResposta = item.querySelector(".faq-resposta").innerText.toLowerCase();
+
+        if (textoPergunta.includes(termo) || textoResposta.includes(termo)) {
+          item.style.display = "block";
+        } else {
+          item.style.display = "none";
+        }
+      });
+    });
+  }
+});
