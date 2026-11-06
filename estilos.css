@@ -11,7 +11,6 @@
   --fonte-titulo: Impact, "Arial Narrow Bold", "Haettenschweiler", sans-serif;
   --fonte-texto: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 
-  /* Removido o limite fixo de 1100px para ocupar a tela inteira */
   --largura: 100%; 
   --espaco-x: clamp(1.5rem, 5vw, 3.5rem);
   --raio: 12px;
@@ -57,12 +56,12 @@ a:focus-visible {
   outline-offset: 3px;
 }
 
-/* ---------- Topo ---------- */
+/* ---------- Topo Modernizado (Duas Colunas) ---------- */
 .topo {
   position: relative;
   overflow: hidden;
-  min-height: 480px;
-  padding: 90px var(--espaco-x) 160px;
+  min-height: 520px;
+  padding: 80px var(--espaco-x) 160px;
   background-color: var(--preto);
   color: var(--branco);
 }
@@ -77,24 +76,115 @@ a:focus-visible {
   height: 180px;
   background-color: var(--amarelo);
   border-radius: 50% 50% 0 0;
+  z-index: 2;
 }
 
-.topo h1,
-.topo p {
+.topo-conteudo {
   position: relative;
-  z-index: 1;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+.topo-texto {
+  flex: 1.2;
+}
+
+.topo-banner-imagem {
+  flex: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Selo de Destaque */
+.badge-competitivo {
+  display: inline-block;
+  padding: 0.4rem 0.9rem;
+  background: rgba(243, 255, 105, 0.15);
+  color: var(--amarelo);
+  border: 1px solid rgba(243, 255, 105, 0.3);
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .topo h1 {
-  max-width: 7ch;
-  margin: 0 0 clamp(1.5rem, 4vw, 3rem);
-  font-size: clamp(3.5rem, 11vw, 5.4rem);
+  max-width: none;
+  margin: 0 0 1rem;
+  font-size: clamp(3rem, 8vw, 5rem);
   line-height: 0.9;
+  color: var(--branco);
 }
 
 .topo p {
-  max-width: 430px;
-  font-weight: bold;
+  max-width: 500px;
+  font-weight: 500;
+  color: #ccc;
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+}
+
+/* Estatísticas Rápidas no Topo */
+.topo-stats-rapidos {
+  display: flex;
+  gap: 2rem;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-item strong {
+  font-family: var(--fonte-titulo);
+  font-size: 1.8rem;
+  color: var(--amarelo);
+  line-height: 1;
+}
+
+.stat-item span {
+  font-size: 0.8rem;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Imagem do Topo com Efeito 3D e Brilho */
+.topo-banner-imagem img {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  border-radius: var(--raio);
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  border: 2px solid rgba(255, 255, 105, 0.2);
+  transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
+  transition: transform 0.4s ease;
+}
+
+.topo-banner-imagem img:hover {
+  transform: perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1.02);
+}
+
+.glow-effect {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  background: var(--amarelo);
+  filter: blur(80px);
+  opacity: 0.25;
+  z-index: 1;
+  border-radius: 50%;
 }
 
 /* ---------- Seções ---------- */
@@ -134,6 +224,8 @@ section h2 {
   text-align: center;
   text-decoration: none;
   transition: background-color 0.15s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .links a:hover {
@@ -195,7 +287,98 @@ section h2 {
   text-align: center;
 }
 
-/* ---------- Mobile ---------- */
+/* ---------- Layout em Duas Colunas para Seções ---------- */
+.conteudo-secao {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.conteudo-secao.visivel {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.bloco-texto {
+  flex: 1;
+}
+
+.bloco-imagem {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+}
+
+.bloco-imagem img {
+  width: 100%;
+  max-width: 450px;
+  height: auto;
+  border-radius: var(--raio);
+  object-fit: cover;
+  border: 2px dashed rgba(0, 0, 0, 0.2);
+  transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+  will-change: transform;
+}
+
+.bloco-imagem img:hover {
+  box-shadow: 0 15px 30px rgba(243, 255, 105, 0.2);
+}
+
+/* Efeito Ripple (Onda ao clicar no botão) */
+.ripple {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple-effect 0.6s linear;
+  pointer-events: none;
+}
+
+@keyframes ripple-effect {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* ---------- Responsivo / Mobile ---------- */
+@media (max-width: 900px) {
+  .topo-conteudo {
+    flex-direction: column;
+    text-align: center;
+    gap: 2.5rem;
+  }
+
+  .topo p {
+    margin-inline: auto;
+  }
+
+  .topo-stats-rapidos {
+    justify-content: center;
+  }
+
+  .topo-banner-imagem img {
+    max-width: 320px;
+    transform: none;
+  }
+
+  .conteudo-secao {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .bloco-imagem {
+    width: 100%;
+  }
+}
+
 @media (max-width: 600px) {
   .topo {
     min-height: 400px;
@@ -206,10 +389,7 @@ section h2 {
     max-width: none;
   }
 
-  .links li {
-    width: 100%;
-  }
-
+  .links li,
   .links a {
     width: 100%;
   }
@@ -219,52 +399,51 @@ section h2 {
   }
 }
 
+/* ---------- Lightbox (Imagem Ampliada em Tela Cheia) ---------- */
+.lightbox-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(5px);
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  cursor: zoom-out;
+}
+
+.lightbox-modal img {
+  max-width: 90%;
+  max-height: 90vh;
+  border-radius: var(--raio);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+  border: 2px solid var(--amarelo);
+  animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Deixa o cursor com formato de "ampliar" nas imagens do site */
+.bloco-imagem img {
+  cursor: zoom-in;
+}
+
 /* ---------- Acessibilidade ---------- */
 @media (prefers-reduced-motion: reduce) {
   * {
     transition: none !important;
-  }
-}
-
-/* ---------- Layout em Duas Colunas para Seções ---------- */
-.conteudo-secao {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 3rem;
-}
-
-.bloco-texto {
-  flex: 1; /* Ocupa o espaço disponível à esquerda */
-}
-
-.bloco-imagem {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Estilização padrão para as imagens ocuparem o espaço de forma responsiva */
-.bloco-imagem img {
-  width: 100%;
-  max-width: 450px;
-  height: auto;
-  border-radius: var(--raio);
-  object-fit: cover;
-  /* Visual temporário caso a imagem ainda não exista (mostra uma caixa tracejada) */
-  border: 2px dashed rgba(0, 0, 0, 0.2); 
-}
-
-/* ---------- Ajuste para Mobile (Empilha a imagem abaixo do texto) ---------- */
-@media (max-width: 900px) {
-  .conteudo-secao {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.5rem;
-  }
-
-  .bloco-imagem {
-    width: 100%;
   }
 }
