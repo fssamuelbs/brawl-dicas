@@ -11,7 +11,8 @@
   --fonte-titulo: Impact, "Arial Narrow Bold", "Haettenschweiler", sans-serif;
   --fonte-texto: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 
-  --largura: 1100px;
+  /* Removido o limite fixo de 1100px para ocupar a tela inteira */
+  --largura: 100%; 
   --espaco-x: clamp(1.5rem, 5vw, 3.5rem);
   --raio: 12px;
 }
@@ -222,5 +223,48 @@ section h2 {
 @media (prefers-reduced-motion: reduce) {
   * {
     transition: none !important;
+  }
+}
+
+/* ---------- Layout em Duas Colunas para Seções ---------- */
+.conteudo-secao {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+.bloco-texto {
+  flex: 1; /* Ocupa o espaço disponível à esquerda */
+}
+
+.bloco-imagem {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Estilização padrão para as imagens ocuparem o espaço de forma responsiva */
+.bloco-imagem img {
+  width: 100%;
+  max-width: 450px;
+  height: auto;
+  border-radius: var(--raio);
+  object-fit: cover;
+  /* Visual temporário caso a imagem ainda não exista (mostra uma caixa tracejada) */
+  border: 2px dashed rgba(0, 0, 0, 0.2); 
+}
+
+/* ---------- Ajuste para Mobile (Empilha a imagem abaixo do texto) ---------- */
+@media (max-width: 900px) {
+  .conteudo-secao {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .bloco-imagem {
+    width: 100%;
   }
 }
