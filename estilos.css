@@ -56,7 +56,7 @@ a:focus-visible {
   outline-offset: 3px;
 }
 
-/* ---------- Topo Modernizado (Duas Colunas) ---------- */
+/* ---------- Topo Modernizado ---------- */
 .topo {
   position: relative;
   overflow: hidden;
@@ -66,7 +66,6 @@ a:focus-visible {
   color: var(--branco);
 }
 
-/* Curva amarela que "entra" na primeira seção */
 .topo::after {
   content: "";
   position: absolute;
@@ -102,7 +101,6 @@ a:focus-visible {
   align-items: center;
 }
 
-/* Selo de Destaque */
 .badge-competitivo {
   display: inline-block;
   padding: 0.4rem 0.9rem;
@@ -133,7 +131,6 @@ a:focus-visible {
   margin-bottom: 2rem;
 }
 
-/* Estatísticas Rápidas no Topo */
 .topo-stats-rapidos {
   display: flex;
   gap: 2rem;
@@ -158,7 +155,6 @@ a:focus-visible {
   letter-spacing: 0.05em;
 }
 
-/* Imagem do Topo com Efeito 3D e Brilho */
 .topo-banner-imagem img {
   width: 100%;
   max-width: 420px;
@@ -189,7 +185,7 @@ a:focus-visible {
 
 /* ---------- Seções ---------- */
 section {
-  padding: 2.25rem var(--espaco-x);
+  padding: 1.5rem var(--espaco-x);
   background-color: var(--amarelo);
 }
 
@@ -298,6 +294,18 @@ section h2 {
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
+/* Correção específica para Computador (Desktop) */
+@media (min-width: 901px) {
+  section {
+    padding: 1rem var(--espaco-x); /* Reduz ainda mais o espaço vertical das seções no PC */
+  }
+  
+  .conteudo-secao {
+    max-width: 1200px; /* Limita a largura para centralizar e aproximar os elementos */
+    margin-inline: auto; /* Centraliza na tela */
+  }
+}
+
 .conteudo-secao.visivel {
   opacity: 1;
   transform: translateY(0);
@@ -324,13 +332,14 @@ section h2 {
   border: 2px dashed rgba(0, 0, 0, 0.2);
   transition: transform 0.1s ease-out, box-shadow 0.3s ease;
   will-change: transform;
+  cursor: zoom-in;
 }
 
 .bloco-imagem img:hover {
   box-shadow: 0 15px 30px rgba(243, 255, 105, 0.2);
 }
 
-/* Efeito Ripple (Onda ao clicar no botão) */
+/* ---------- Efeito Ripple ---------- */
 .ripple {
   position: absolute;
   background: rgba(0, 0, 0, 0.2);
@@ -399,7 +408,7 @@ section h2 {
   }
 }
 
-/* ---------- Lightbox (Imagem Ampliada em Tela Cheia) ---------- */
+/* ---------- Lightbox ---------- */
 .lightbox-modal {
   display: none;
   position: fixed;
@@ -436,12 +445,7 @@ section h2 {
   }
 }
 
-/* Deixa o cursor com formato de "ampliar" nas imagens do site */
-.bloco-imagem img {
-  cursor: zoom-in;
-}
-
-/* ---------- Estilos da Página de FAQ ---------- */
+/* ---------- FAQ ---------- */
 .faq-pesquisa-container input {
   width: 100%;
   padding: 1rem 1.25rem;
@@ -516,7 +520,6 @@ section h2 {
   margin: 0;
 }
 
-/* Estado Ativo (Quando aberto) */
 .faq-item.ativo .faq-resposta {
   max-height: 200px;
   padding-top: 0.5rem;
@@ -526,7 +529,7 @@ section h2 {
   transform: rotate(45deg);
 }
 
-/* ---------- Estilos da Página de Desenvolvedores ---------- */
+/* ---------- Desenvolvedores ---------- */
 .grid-devs {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -555,7 +558,7 @@ section h2 {
 .dev-foto-container img {
   width: 180px !important;
   height: 180px !important;
-  border-radius: 50% !important; /* Deixa a foto redonda estilo avatar */
+  border-radius: 50% !important;
   object-fit: cover;
   border: 4px solid var(--amarelo) !important;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
@@ -613,7 +616,6 @@ section h2 {
   margin-bottom: 0.3rem;
 }
 
-/* Responsivo para Telemóveis */
 @media (max-width: 900px) {
   .grid-devs {
     grid-template-columns: 1fr;
