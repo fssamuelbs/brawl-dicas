@@ -37,4 +37,4 @@ brawl-dicas/
 ├── developer.html    # Informações dos desenvolvedores
 ├── index.js          # Lógica e interatividade em JavaScript
 ├── estilos.css       # Folha de estilos global do site
-└── imagens/          # Pasta de recursos visuais locais
+
